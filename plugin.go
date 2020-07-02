@@ -1,1 +1,1 @@
-package my_micro_service
+package main

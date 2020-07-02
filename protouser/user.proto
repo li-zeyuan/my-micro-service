@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package mu.micro.book.service.user;
 
-option go_package = "src\my-micro-service\protouser";
+option go_package = "protouser;main";
 
 service User {
     rpc QueryUserByName (Request) returns (Response) {
