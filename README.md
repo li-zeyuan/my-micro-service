@@ -19,6 +19,18 @@
 
 ## 项目介绍
 
+	### 项目架构
+
+```sequence
+用户端->web层: http请求
+Note over web层: (1)登录、token颁发
+Note over web层: (2)鉴权
+web层->服务层: rpc调用
+
+```
+
+
+
 ## 技术栈
 
 ## 业务模块
