@@ -3,6 +3,7 @@ package user
 import (
 	"github.com/go-log/log"
 	"github.com/li-zeyuan/my-micro-service/basic/db"
+	proto "github.com/li-zeyuan/my-micro-service/proto/user"
 )
 
 func (s *service) QueryUserByName(userName string) (*proto.User, error) {

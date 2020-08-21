@@ -1,12 +1,11 @@
 package config
 
 import (
-	"database/sql"
 	"fmt"
-	"github.com/go-log/log"
-	"github.com/micro/go-micro/config"
-	"github.com/micro/go-micro/config/source"
-	"github.com/micro/go-micro/config/source/file"
+	"github.com/micro/go-micro/v2/config"
+	"github.com/micro/go-micro/v2/config/source"
+	"github.com/micro/go-micro/v2/config/source/file"
+	log "github.com/micro/go-micro/v2/logger"
 	"os"
 	"path/filepath"
 	"strings"
@@ -14,19 +13,24 @@ import (
 )
 
 var (
-	inited    bool
-	mysqlDB *sql.DB
-	m       sync.RWMutex
+	defaultRootPath         = "app"
+	defaultConfigFilePrefix = "application-"
+	etcdConfig              defaultEtcdConfig
+	mysqlConfig             defaultMysqlConfig
+	profiles                defaultProfiles
+	m                       sync.RWMutex
+	inited                  bool
+	sp                      = string(filepath.Separator)
 )
 
 // InitConfig 初始化配置
-func InitConfig() {
+func Init() {
 
 	m.Lock()
 	defer m.Unlock()
 
 	if inited {
-		log.Log(fmt.Errorf("[InitConfig] 配置已经初始化过"))
+		log.Info(fmt.Errorf("[InitConfig] 配置已经初始化过"))
 		return
 	}
 
@@ -47,7 +51,7 @@ func InitConfig() {
 		panic(err)
 	}
 
-	log.Infof("[InitConfig] 加载配置文件：path: %s, %+v\n", pt+"/application.yml", profiles)
+	log.Info("[InitConfig] 加载配置文件：path: %s, %+v\n", pt+"/application.yml", profiles)
 
 	// 开始导入新文件
 	if len(profiles.GetInclude()) > 0 {
@@ -72,4 +76,14 @@ func InitConfig() {
 
 	// 标记已经初始化
 	inited = true
+}
+
+// 获取mysql配置
+func GetMysqlConfig() MysqlConfig {
+	return mysqlConfig
+}
+
+// 获取Etcd配置
+func GetEtcdConfig() EtcdConfig {
+	return etcdConfig
 }

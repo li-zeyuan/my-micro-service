@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/go-log/log"
+	"github.com/li-zeyuan/my-micro-service/basic/config"
 	"sync"
 )
 

@@ -2,12 +2,13 @@ package db
 
 import (
 	"database/sql"
+	"github.com/li-zeyuan/my-micro-service/basic/config"
 	"log"
 )
 
 func initMysql()  {
 	// 创建连接
-	mysqlDB, err := sql.Open("mysql", config.GetMysqlConfig().GetURL)
+	mysqlDB, err := sql.Open("mysql", config.GetMysqlConfig().GetURL())
 	if err != nil {
 		log.Fatal(err)
 		panic(err)

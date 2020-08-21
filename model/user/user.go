@@ -3,6 +3,8 @@ package user
 import (
 	"fmt"
 	"sync"
+
+	user "github.com/li-zeyuan/my-micro-service/proto/user"
 )
 
 var (
@@ -16,7 +18,7 @@ type service struct {
 // 用户服务类
 type Service interface {
 	// 根据用户名获取用户
-	QueryUserByName(userName string) (ret *proto.User, err error)
+	QueryUserByName(userName string) (ret *user.User, err error)
 }
 
 // 获取服务类

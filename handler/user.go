@@ -2,8 +2,10 @@ package handler
 
 import (
 	"context"
-	"github.com/li-zeyuan/my-micro-service/model/user"
 	"log"
+
+	"github.com/li-zeyuan/my-micro-service/model/user"
+	proto_user "github.com/li-zeyuan/my-micro-service/proto/user"
 )
 
 var (
@@ -16,25 +18,26 @@ type Service struct {
 
 // 初始化handler
 func Init()  {
-	userService, err := user.GetService()
+	var err error
+	userService, err = user.GetService()
 	if err != nil {
 		log.Fatal("get user service error")
 		return
 	}
 }
 
-func (e *Service) QueryUserByName(ctx context.Context, req *s.Request, rsp *s.Response) error{
-	user, err := userService.QueryUserByName(req.UserName)
+func (e *Service) QueryUserByName(ctx context.Context, req *proto_user.Request, rsp *proto_user.Response) error{
+	u, err := userService.QueryUserByName(req.UserName)
 	if err != nil {
 		rsp.Success = false
-		rsp.Error = new(s.Error)
-		rsp.Code = 500
-		rsp.Detail = err.Error()
+		rsp.Error = new(proto_user.Error)
+		rsp.Error.Code = 500
+		rsp.Error.Detail = err.Error()
 
 		return err
 	}
 
-	rsp.User = user
+	rsp.User = u
 	rsp.Success = true
 
 	return nil
