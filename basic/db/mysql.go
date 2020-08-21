@@ -2,8 +2,9 @@ package db
 
 import (
 	"database/sql"
-	"github.com/li-zeyuan/my-micro-service/basic/config"
 	"log"
+
+	"github.com/li-zeyuan/my-micro-service/basic/config"
 )
 
 func initMysql()  {

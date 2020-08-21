@@ -36,4 +36,4 @@ web层->服务层: rpc调用
 ## 业务模块
 
 ## 进度
-- 生成protoc代码：https://github.com/micro-in-cn/tutorials/tree/master/microservice-in-micro/part1
+- 加载db配置文件

@@ -4,3 +4,6 @@
 - 解决：阿里云控制台添加安全组就可以外网连接。
 ## docker中安装MySQL
 - https://zhuanlan.zhihu.com/p/80029398
+## go mod 锁定引用包
+- 背景：main中引用go-micro，go-micro引用google.golang.org/grpc，因为版本问题，build时提示结构体undefined。
+- 解决：go mod中replace指定包版本`replace google.golang.org/grpc => google.golang.org/grpc v1.26.0`

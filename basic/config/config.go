@@ -2,14 +2,15 @@ package config
 
 import (
 	"fmt"
-	"github.com/micro/go-micro/v2/config"
-	"github.com/micro/go-micro/v2/config/source"
-	"github.com/micro/go-micro/v2/config/source/file"
-	log "github.com/micro/go-micro/v2/logger"
 	"os"
 	"path/filepath"
 	"strings"
 	"sync"
+
+	"github.com/micro/go-micro/v2/config"
+	"github.com/micro/go-micro/v2/config/source"
+	"github.com/micro/go-micro/v2/config/source/file"
+	log "github.com/micro/go-micro/v2/logger"
 )
 
 var (
@@ -51,7 +52,7 @@ func Init() {
 		panic(err)
 	}
 
-	log.Info("[InitConfig] 加载配置文件：path: %s, %+v\n", pt+"/application.yml", profiles)
+	log.Info("[InitConfig] 加载配置文件：path: %s, %+v\n", pt+"\\application.yml", profiles)
 
 	// 开始导入新文件
 	if len(profiles.GetInclude()) > 0 {
