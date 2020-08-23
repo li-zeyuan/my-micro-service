@@ -39,11 +39,11 @@ func Init() {
 	// 先加载基础配置
 	appPath, _ := filepath.Abs(filepath.Dir(filepath.Join("./", string(filepath.Separator))))
 
-	pt := filepath.Join(appPath, "conf")
+	pt := filepath.Join(appPath, "src/my-micro-service/conf")
 	os.Chdir(appPath)
 
 	// 找到application.yml文件
-	if err := config.Load(file.NewSource(file.WithPath(pt + "/application.yml"))); err != nil {
+	if err := config.Load(file.NewSource(file.WithPath(pt + "\\application.yml"))); err != nil {
 		panic(err)
 	}
 
@@ -72,8 +72,8 @@ func Init() {
 	}
 
 	// 赋值
-	config.Get(defaultRootPath, "etcd").Scan(&etcdConfig)
-	config.Get(defaultRootPath, "mysql").Scan(&mysqlConfig)
+	_ = config.Get(defaultRootPath, "etcd").Scan(&etcdConfig)
+	_ = config.Get(defaultRootPath, "mysql").Scan(&mysqlConfig)
 
 	// 标记已经初始化
 	inited = true

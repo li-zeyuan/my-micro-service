@@ -1,7 +1,7 @@
 app:
   mysql:
     enabled: true
-    url: root:lzymysql@(47.115.13.137:3433)\micro?charset=utf8
+    url: root:lzymysql@(47.115.13.137:3433)/micro?charset=utf8
     maxIdleConnection: 100
     maxOpenConnection: 130
     connMaxLifetime: 100

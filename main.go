@@ -42,7 +42,10 @@ func main() {
 	)
 
 	// 注册服务
-	protouser.RegisterUserHandler(service.Server(), new(handler.Service))
+	err := protouser.RegisterUserHandler(service.Server(), new(handler.Service))
+	if err !=nil {
+		panic(err)
+	}
 
 	// 启动服务
 	if err := service.Run(); err != nil {
